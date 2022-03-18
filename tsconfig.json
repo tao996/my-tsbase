@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    "rootDir": "./",
     "target": "es5",
     "module": "esnext",
-    "lib": ["es2015"],
+    "lib": [
+      "es2015",
+      "dom"
+    ],
     "sourceMap": true,
     "strict": true,
     "strictFunctionTypes": true,
@@ -16,8 +20,15 @@
     "noUnusedParameters": true,
     "skipLibCheck": true,
     "declaration": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node"
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts"
+  ]
 }

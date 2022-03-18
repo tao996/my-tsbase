@@ -1,3 +1,3 @@
-export function version() {
-  return 'tslib'
+export function version(){
+    console.log('myTsLib')
 }
