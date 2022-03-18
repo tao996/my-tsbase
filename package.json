@@ -1,0 +1,25 @@
+{
+  "name": "tslib",
+  "version": "1.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^2.70.1",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "typescript": "^4.6.2"
+  },
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "publishConfig": {
+    "registry": "http://localhost:4873"
+  }
+}
