@@ -2,10 +2,6 @@
 
 my typescript library
 
-## 编译
-
-`./node_modules/.bin/rollup -c`
-
 ## 参考资料
 
 * [How to create your own Typescript library](https://aganglada.com/blog/how-to-create-your-own-typescript-library)

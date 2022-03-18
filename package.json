@@ -4,22 +4,23 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "jest",
+    "test-c": "jest --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
     "rollup": "^2.70.1",
     "rollup-plugin-typescript2": "^0.31.2",
+    "ts-jest": "^27.1.3",
     "typescript": "^4.6.2"
   },
   "files": [
     "dist",
     "package.json"
-  ],
-  "publishConfig": {
-    "registry": "http://localhost:4873"
-  }
+  ]
 }
