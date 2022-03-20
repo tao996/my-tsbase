@@ -84,7 +84,7 @@ export class MyObject {
      * @param keys {Array} 需要复制到属性名称
      * @param skipEmpty {boolean} 是否跳过 source[key] 为空的值，默认 false(即使是空值也要复制)
      */
-    static overwrite(destination: any, source: any, keys: string[], skipEmpty = false): any {
+    static pickerKeysOverwrite(destination: any, source: any, keys: string[], skipEmpty = false): any {
         for (const key of keys) {
             if (skipEmpty) {
                 if (!MyAssets.isEmpty(source[key])) {
@@ -97,11 +97,11 @@ export class MyObject {
     }
 
     /**
-     * 如果 source[key] 不为空,则用它的值来替换 destination[key]
+     * 检查 destination 全部键，如果 source[key] 存在,则用它的值来覆盖 destination[key]
      * @param {Object} destination 源数据
      * @param {Object} source 复制源
      */
-    static overwriteTrueItems(destination: any, source: any) {
+    static pickerExitsOverwrite(destination: any, source: any) {
         Object.keys(destination).forEach(key => {
             if (typeof source[key] !== 'undefined') {
                 destination[key] = source[key];
@@ -110,11 +110,12 @@ export class MyObject {
     }
 
     /**
+     * 检查 destination 全部键，如果 source 存在对应的键并且不为空，则将其值复制到 descination 中
      * @param destination {Object} 目标数据
      * @param source {Object} 复制源
      * @param def {Object} 默认值源
      */
-    static overwriteNoEmpty(destination: any, source: any, def: any) {
+    static pickerNotEmptyOverwrite(destination: any, source: any, def: any) {
         Object.keys(destination).forEach(key => {
             if (typeof source[key] !== 'undefined') {
                 if (MyAssets.isEmpty(source[key])) {
@@ -126,6 +127,19 @@ export class MyObject {
                 }
             }
         })
+    }
+
+    /**
+     * 检查 source 的键，如果 destination 中没有定义，则复制过去
+     * @param destination
+     * @param source
+     */
+    static overwriteIfNotSet(destination: any, source: any) {
+        for (const p in source) {
+            if (MyAssets.isNotSet(destination[p])) {
+                destination[p] = source[p];
+            }
+        }
     }
 
     /**

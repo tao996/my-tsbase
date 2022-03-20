@@ -1,6 +1,6 @@
 import {ResListResult} from "./model";
 
-export class MyTable<T> {
+export class MyTableService<T> {
 
     backupWhere: {
         [key: string]: any;

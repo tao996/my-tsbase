@@ -6,7 +6,7 @@ export class MyTypecast {
      * 将字符串(数字)转为数字
      * @param data
      */
-    static str2Number(data: string | number): number {
+    static str2Number(data: string | number | null): number {
         return this.strToNumber(data);
     }
 
@@ -14,7 +14,7 @@ export class MyTypecast {
      * 将字符串(数字)转为数字
      * @param data {string|number}
      */
-    static strToNumber(data: string | number): number {
+    static strToNumber(data: string | number | null): number {
         if (typeof data === 'string') {
             if (MyAssets.isNumber(data)) {
                 return /\./.test(data) ? parseFloat(data) : parseInt(data, 10);

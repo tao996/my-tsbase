@@ -17,6 +17,14 @@ export class MyAssets {
         return isNumber(data);
     }
 
+    /**
+     * 是否没有定义，即为 null | undefined
+     * @param data
+     */
+    static isNotSet(data: any) {
+        return data === null || data === undefined;
+    }
+
     // https://stackoverflow.com/questions/4994201/is-object-empty
     /**
      * 判断值是否为空
