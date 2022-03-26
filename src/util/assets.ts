@@ -1,8 +1,9 @@
-import {isArray, isEmpty, isNumber, isObjectLike} from "lodash";
+import {isArray, isEmpty, isObjectLike} from "lodash";
 
 const emailRegex = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2,3})?)$/;
 const phoneCnRegex = /^[1-9]\d{10}$/;
 const captchaRegex = /^[A-Za-z0-9]{4,6}$/;
+const numRegex = /^[\d.]+$/;
 
 export class MyAssets {
     static isArray(obj: any): boolean {
@@ -10,11 +11,25 @@ export class MyAssets {
     }
 
     /**
-     * 是否为数字 3, Number.MIN_VALUE, Infinity => true
+     * 是否为数字
      * @param data {any} 待检测的数据
      */
     static isNumber(data: any): boolean {
-        return isNumber(data);
+        switch (typeof data) {
+            case "number":
+            case "bigint":
+                return true;
+            case "string":
+                return numRegex.test(data);
+            case "function":
+            case "object":
+            case "boolean":
+            case "symbol":
+            case "undefined":
+                return false;
+            default:
+                return !isNaN(Number(data));
+        }
     }
 
     /**
