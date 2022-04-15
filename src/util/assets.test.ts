@@ -19,4 +19,9 @@ test('isNumber', () => {
     expect(MyAssets.isNumber(true)).toBeFalsy()
     expect(MyAssets.isNumber(() => {
     })).toBeFalsy()
+
+    expect(MyAssets.isTrue(true)).toBeTruthy()
+    expect(MyAssets.isTrue('true')).toBeTruthy()
+    expect(MyAssets.isTrue('false')).toBeFalsy()
+    expect(MyAssets.isTrue('TRUE')).toBeTruthy()
 });

@@ -68,6 +68,16 @@ export class MyAssets {
         }
     }
 
+    static isTrue(data:any) {
+        switch (typeof data) {
+            case "boolean":
+                return data;
+            case "string":
+                return data.toLowerCase() === 'true'
+        }
+        return false
+    }
+
     /**
      * 是否是类对象，{}|[]|new student() => true, null => false
      * @param data
