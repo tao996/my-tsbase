@@ -1,5 +1,3 @@
-import each from 'lodash/each';
-
 const KEY_HREF = 'href';
 const KEY_SRC = 'src';
 
@@ -12,20 +10,22 @@ export class MyHtml {
         if (this.files.length > 0) {
             return;
         }
-        const nodes: HTMLCollection = document.getElementsByTagName('head')[0].children;
-
-        each(nodes, node => {
-            // @ts-ignore
-            if (node.nodeName === 'LINK' && typeof node[KEY_HREF] === 'string') {
+        const nodes:HTMLCollection = document.getElementsByTagName('head')[0].children;
+        if (nodes){
+            for (let i = 0; i < nodes.length; i++) {
+                const node = nodes[i];
                 // @ts-ignore
-                this.files.push(node[KEY_HREF]);
-            } else { // @ts-ignore
-                if (node.nodeName === 'SCRIPT' && typeof node[KEY_SRC] === 'string') {
+                if (node.nodeName === 'LINK' && typeof node[KEY_HREF] === 'string') {
                     // @ts-ignore
-                    this.files.push(node[KEY_SRC]);
+                    this.files.push(node[KEY_HREF]);
+                } else { // @ts-ignore
+                    if (node.nodeName === 'SCRIPT' && typeof node[KEY_SRC] === 'string') {
+                        // @ts-ignore
+                        this.files.push(node[KEY_SRC]);
+                    }
                 }
             }
-        });
+        }
         // console.log(this.files);
     }
 

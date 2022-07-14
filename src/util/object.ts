@@ -1,4 +1,3 @@
-import {cloneDeep, at, forIn, keys} from "lodash";
 import {map} from "./util";
 import {MyAssets} from "./assets";
 
@@ -11,10 +10,10 @@ export class MyObject {
 
     /**
      * 深复制
-     * @param {any} obj 待复制的数据
+     * @param {any} obj 待复制的对象，注意如果含有 Function，请使用 lodash.cloneDeep
      */
     static deepCopy(obj: any) {
-        return cloneDeep(obj)
+        return JSON.parse(JSON.stringify(obj))
     }
 
     static sortCompareFn(a: SortItem, b: SortItem): number {
@@ -142,29 +141,4 @@ export class MyObject {
         }
     }
 
-    /**
-     * 来自 object 的 path 路径相应的值, _.at({a:{b:{c:'age'}}}, 'a.b.c').shift() == 'age'
-     * @param obj {Object}
-     * @param path {string} 路径
-     */
-    static at(obj: any, path: string): any {
-        return at(obj, path).shift()
-    }
-
-    /**
-     * 使用 iteratee 遍历对象的自身和继承的可枚举属性
-     * @param obj
-     * @param iteratee {Function}
-     */
-    static forIn(obj: any, iteratee: (value: any, key: any) => void) {
-        forIn(obj, iteratee)
-    }
-
-    /**
-     * 创建一个 object 的自身可枚举属性名为数组
-     * @param obj
-     */
-    static keys(obj: Object) {
-        return keys(obj);
-    }
 }

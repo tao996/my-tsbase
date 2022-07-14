@@ -1,6 +1,6 @@
 {
   "name": "my-tsbase",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "a personal typescript library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,6 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
     "ts-md5": "^1.2.11"
   },
   "files": [

@@ -1,13 +1,34 @@
-import {isArray, isEmpty, isObjectLike} from "lodash";
-
 const emailRegex = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2,3})?)$/;
 const phoneCnRegex = /^[1-9]\d{10}$/;
 const captchaRegex = /^[A-Za-z0-9]{4,6}$/;
 const numRegex = /^[\d.]+$/;
+// copy from lodash
+/** Used as references for various `Number` constants. */
+const MAX_SAFE_INTEGER = 9007199254740991
 
 export class MyAssets {
-    static isArray(obj: any): boolean {
-        return isArray(obj);
+
+    static isLength(value: any) {
+        return typeof value === 'number' &&
+            value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER
+    }
+
+    /**
+     * 是否为数组
+     * @param value
+     * @example [1,2,3]=>true, document.body.children=>true, 'abc'=>false, Function=>false
+     */
+    static isArray(value: any): boolean {
+        return value != null && typeof value !== 'function' && typeof value !== 'string' && this.isLength(value.length)
+    }
+
+    /**
+     * 检查是否为对象
+     * @param value
+     * @example {}=>true, [1,2,3]=>true, Function=>false, null=>false
+     */
+    static isObject(value: any): boolean {
+        return typeof value === 'object' && value !== null
     }
 
     /**
@@ -63,12 +84,21 @@ export class MyAssets {
                     data === '0001-01-01T00:00:00Z' ||
                     data === '0001-01-01 00:00:00' ||
                     data.trim() === '';
+            case 'object':
+                const r = JSON.stringify(data);
+                return r === '{}' || r === '[]'
+            case "boolean":
+                return !data;
             default:
-                return isEmpty(data);
+                return !!data;
         }
     }
 
-    static isTrue(data:any) {
+    static unEmpty(data:any){
+        return !this.isEmpty(data);
+    }
+
+    static isTrue(data: any) {
         switch (typeof data) {
             case "boolean":
                 return data;
@@ -77,15 +107,6 @@ export class MyAssets {
         }
         return false
     }
-
-    /**
-     * 是否是类对象，{}|[]|new student() => true, null => false
-     * @param data
-     */
-    static isObjectLike(data: any): boolean {
-        return isObjectLike(data)
-    }
-
 
     /**
      * 是否为中国大陆手机号
