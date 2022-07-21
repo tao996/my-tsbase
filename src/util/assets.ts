@@ -2,9 +2,15 @@ const emailRegex = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2,3})?)$
 const phoneCnRegex = /^[1-9]\d{10}$/;
 const captchaRegex = /^[A-Za-z0-9]{4,6}$/;
 const numRegex = /^[\d.]+$/;
+const urlRegex = new RegExp('^(https?:\\/\\/)?' + // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+    '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
 // copy from lodash
 /** Used as references for various `Number` constants. */
-const MAX_SAFE_INTEGER = 9007199254740991
+export const MAX_SAFE_INTEGER = 9007199254740991
 
 export class MyAssets {
 
@@ -94,7 +100,7 @@ export class MyAssets {
         }
     }
 
-    static unEmpty(data:any){
+    static unEmpty(data: any) {
         return !this.isEmpty(data);
     }
 
@@ -143,5 +149,9 @@ export class MyAssets {
      */
     static isAccount(account: string) {
         return this.isPhoneCn(account) || this.isEmail(account);
+    }
+
+    static isUrl(data: string): boolean {
+        return urlRegex.test(data);
     }
 }

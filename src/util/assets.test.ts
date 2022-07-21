@@ -46,4 +46,14 @@ test('MyAssets', () => {
     expect(MyAssets.isEmpty({})).toBeTruthy()
     expect(MyAssets.isEmpty([])).toBeTruthy()
     expect(MyAssets.isEmpty(false)).toBeTruthy()
+
+    expect(MyAssets.isUrl('http://test.com')).toBeTruthy()
+    expect(MyAssets.isUrl('https://test.com')).toBeTruthy()
+    expect(MyAssets.isUrl('http://www.test.com')).toBeTruthy()
+    expect(MyAssets.isUrl('https://www.test.com')).toBeTruthy()
+    expect(MyAssets.isUrl('test.com')).toBeTruthy()
+    expect(MyAssets.isUrl('www.test.com')).toBeTruthy()
+    expect(MyAssets.isUrl(' www.test.com')).toBeFalsy()
+    expect(MyAssets.isUrl('www. test.com')).toBeFalsy()
+    expect(MyAssets.isUrl('www.test. com')).toBeFalsy()
 });
