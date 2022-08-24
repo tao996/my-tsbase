@@ -67,6 +67,22 @@ export class MyAssets {
         return data === null || data === undefined;
     }
 
+    /**
+     * 数据有定义，即不是 null|undefined
+     * @param data
+     */
+    static hasSet(data: any) {
+        return !this.isNotSet(data)
+    }
+
+    /**
+     * 数据有定义，hasSet 的同名方法
+     * @param data
+     */
+    static hasData(data: any) {
+        return !this.isNotSet(data)
+    }
+
     // https://stackoverflow.com/questions/4994201/is-object-empty
     /**
      * 判断值是否为空
