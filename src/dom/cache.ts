@@ -2,6 +2,10 @@ export class MyCache {
     private engine: Storage;
     private readonly name: string;
 
+    /**
+     * @param name {string} 缓存 key
+     * @param engine {Storage} 存储引擎，默认为 localStorage
+     */
     constructor(name: string, engine?: Storage) {
         this.name = name;
         this.engine = engine ? engine : localStorage;

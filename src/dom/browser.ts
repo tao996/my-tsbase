@@ -24,4 +24,11 @@ export class MyBrowser {
             return false;
         }
     }
+
+    /**
+     * 是否为小屏，宽度小于 <=767
+     */
+    static isPhoneScreen(): boolean {
+        return window.innerWidth <= 767;
+    }
 }

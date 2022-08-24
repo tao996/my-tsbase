@@ -24,14 +24,16 @@ const SymNo = '✘';
 export class MyTextService {
     static symYes = SymYes;
     static symNo = SymNo;
-
+    /**
+     * 状态文字
+     */
     static readonly mapStatusText: Kv[] = [
-        {name: StatusActive, title: '正常', color: 'primary'},
-        {name: StatusDisabled, title: '禁用', color: 'grey'},
-        {name: 'lock', title: '锁定', color: ''},
+        {name: StatusActive, title: '正常', color: 'success'},
+        {name: StatusDisabled, title: '禁用', color: 'secondary grey'},
+        {name: 'check', title: '待审', color: 'info'},
+        {name: 'lock', title: '锁定', color: 'lock'},
         {name: 'delete', title: '删除', color: 'danger'},
         {name: 'warning', title: '警告', color: 'warning'},
-        {name: 'check', title: '待审', color: ''},
     ];
 
     static readonly mapStatusOptions: Kv[] = [
